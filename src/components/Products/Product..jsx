@@ -1,4 +1,4 @@
-// @flow
+
 import * as React from 'react';
 import {Card, CardActions, CardContent, CardMedia, IconButton, Typography} from "@material-ui/core";
  import {AddShoppingCart} from "@material-ui/icons";
@@ -9,7 +9,7 @@ const Product =( {product} ) => {
     return (
         <div>
             <Card className={classes.root}>
-                  <CardMedia className={classes.media} image= '' title={product.name}/>
+                  <CardMedia className={classes.media} image= {product.image} title={product.name}/>
 
             <CardContent>
                 <div className={classes.cardContent}>
