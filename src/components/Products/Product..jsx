@@ -21,7 +21,7 @@ const Product =( {product} ) => {
                     </Typography>
                 </div>
                     <Typography
-                    variant='h2' color='textSecondary'>
+                    variant='body2' color='textSecondary'>
                     {product.description}
                 </Typography>
                     <CardActions disableSpacing className={classes.cardActions}>
