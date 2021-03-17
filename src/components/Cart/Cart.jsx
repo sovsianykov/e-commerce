@@ -3,13 +3,14 @@ import * as React from 'react';
 import {Container,Grid,Typography, Button} from "@material-ui/core";
 import useStyles from './styles'
 import CartItem from "./CartItem/CartItem";
+import {Link} from 'react-router-dom'
 
-export default function Cart({cart}) {
+export default function Cart({cart,handleRemoveFromCart,handleUpdateCartQty,emptyCart}) {
     const classes = useStyles()
     const EmptyCart = () => (
      <Typography variant='subtitle1' >
          You have no items in your cart,
-         start adding something!
+         <Link to='/' className={classes.link}>start adding something!</Link>
      </Typography>
     )
     const FilledCart =() => (
@@ -18,7 +19,7 @@ export default function Cart({cart}) {
                {cart.line_items.map((item) =>(
                    <Grid item xs={12} sm={4} key={item.id}>
                        <div>
-                           <CartItem item = {item}/>
+                           <CartItem item = {item} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart}/>
                        </div>
                    </Grid>
                ) )}
@@ -29,10 +30,10 @@ export default function Cart({cart}) {
                          Subtotal: {cart.subtotal.formatted_with_symbol}
                      </Typography>
                      <div>
-                         <Button className={classes.emptyButton} size='large' type='button' color='secondary' variant='contained'>
+                         <Button className={classes.emptyButton} onClick={emptyCart} size='large' type='button' color='secondary' variant='contained'>
                              Empty Cart
                          </Button>
-                         <Button className={classes.checkoutButton} size='large' type='button' color='primary' variant='contained'>
+                         <Button  component={Link} to='/checkout'  className={classes.checkoutButton} size='large' type='button' color='primary' variant='contained'>
                              Checkout
                          </Button>
                      </div>
