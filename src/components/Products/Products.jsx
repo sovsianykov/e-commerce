@@ -11,7 +11,7 @@ import useStyles from "../Products/productsStyles";
 //     {id:5 , name :"Gibson GS" , description : "  stage guitar", price : "$44000", image: 'https://pbs.twimg.com/profile_images/681224185029505024/9w1ayqPj_400x400.jpg'},
 //     {id:6 , name :"Benedetto" , description : " acoustic guitar", price : "$13000", image: 'https://images.reverb.com/image/upload/s--7IOAW_R9--/f_auto,t_supersize/v1545603580/eitq7z0kmkf3wc5lknim.jpg'}
 // ]
-const Products = ({ products }) => {
+const Products = ({ products,onAddToCard }) => {
   const classes = useStyles();
 
   return (
@@ -20,7 +20,7 @@ const Products = ({ products }) => {
       <Grid container justify="center" spacing={2}>
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={3} lg={3}>
-            <Product product={product} />
+            <Product product={product} onAddToCart={onAddToCard} />
           </Grid>
         ))}
       </Grid>

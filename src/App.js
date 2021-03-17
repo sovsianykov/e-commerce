@@ -16,15 +16,20 @@ export default function App() {
     const fetchCart = async () => {
         setCart( await commerce.cart.retrieve())
     }
+    const handleAddToCart = async (productId, quanitity ) => {
+          const item = await commerce.cart.add()
+
+        setCart(item.cart)
+    }
     useEffect(()=> {
      fetchProducts();
      fetchCart();
     },[])
-    console.log(products)
+    console.log(cart)
     return (
         <div>
             <Navbar/>
-      <Products products = {products}/>
+      <Products products = {products} onAddToCard = {handleAddToCart}/>
         </div>
     );
 };
