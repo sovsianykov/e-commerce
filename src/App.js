@@ -5,6 +5,7 @@ import * as React from 'react';
 import { commerce } from './lib/commerse'
 import { Products, Navbar,Cart } from './components'
 import {useEffect, useState} from "react";
+import {BrowserRouter as Router , Switch , Route} from "react-router-dom";
 
 export default function App() {
     const [products, setProducts] = useState([]);
@@ -27,10 +28,21 @@ export default function App() {
     },[])
     console.log(cart)
     return (
+        <Router>
+
         <div>
             <Navbar totalItems = {cart.total_items}/>
-      {/*<Products products = {products} onAddToCard = {handleAddToCart}/>*/}
-       <Cart cart ={cart}/>
+            <Switch>
+                <Route exact path = "/">
+                    <Products products = {products} onAddToCard = {handleAddToCart}/>
+                </Route>
+                <Route  exact path = "/cart">
+                    <Cart cart ={cart}/>
+                </Route>
+
+            </Switch>
         </div>
+        </Router>
+
     );
 };
