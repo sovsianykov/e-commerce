@@ -40,7 +40,7 @@ export default function App() {
     fetchProducts();
     fetchCart();
   }, []);
-  console.log(cart);
+  // console.log(cart);
   return (
     <Router>
       <div>

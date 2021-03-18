@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { InputLabel , Select, MenuItem, Button, Grid, Typography, } from '@material-ui/core'
 import {useForm, FormProvider} from "react-hook-form";
 import FormInput from "./CustomTextField";
@@ -9,7 +9,7 @@ import FormInput from "./CustomTextField";
 import { commerce } from "../../lib/commerse";
 
 
-export default function AddressForm() {
+const AddressForm =({checkoutToken}) => {
      const [shippingCountries, setShippingCountries] = useState([])
      const [shippingCountry, setShippingCountry] = useState('')
      const [shippingSubdivisions, setShippingSubdivisions] = useState([])
@@ -17,12 +17,20 @@ export default function AddressForm() {
      const [shippingOptions, setShippingOptions] = useState([])
      const [shippingOption, setShippingOption] = useState('')
     const methods = useForm()
+    console.log('checkoutToken in adress is' + checkoutToken)
 
     const fetchShippingCountries = async (checkoutTokenId) => {
-         const { countries } = await commerce.localeListShippingCountries(checkoutTokenId)
+         const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId)
+          console.log(countries)
          setShippingCountries(countries);
 
     }
+
+    useEffect(() => {
+       fetchShippingCountries(checkoutToken.id)
+
+    },[])
+
     return (
         <>
             <Typography variant='h6' gutterBottom>Shipping Address</Typography>
@@ -59,4 +67,5 @@ export default function AddressForm() {
              </FormProvider>
         </>
     );
-};
+}
+export default AddressForm

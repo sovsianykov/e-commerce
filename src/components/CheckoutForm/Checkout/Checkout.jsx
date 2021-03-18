@@ -17,23 +17,28 @@ import { commerce } from "../../../lib/commerse";
 
 const steps = ["Shipping address", "Payment details"];
 
-function Checkout({cart}) {
+function Checkout({ cart }) {
   const classes = useStyles();
   const [activeStep, setSteActiveStep] = useState(0);
-  const   [checkoutToken, setCheckoutToken ] = useState(null)
+  const [checkoutToken, setCheckoutToken ] = useState(null)
   useEffect(() => {
     const generateToken = async () => {
       try {
-        const token = await commerce.checkout.generateToken(cart.id, { type : 'cart'});
-        console.log(token)
+        const token = await commerce.checkout.generateToken(cart.id, { type : 'cart'})
+          console.log(token)
           setCheckoutToken(token)
       } catch (error) {}
     };
-    generateToken();
-  }, []);
+    generateToken()
+  }, [cart])
+  console.log( 'checkoutToken is ' + checkoutToken)
+
 
   const Confirmation = () => <div>Confirmation</div>;
-  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  const Form = () => (activeStep === 0 ? <AddressForm checkoutToken={checkoutToken} /> : <PaymentForm />);
+
+
+
   return (
     <>
       <div className={classes.toolbar} />
@@ -49,7 +54,7 @@ function Checkout({cart}) {
               </Step>
             ))}
           </Stepper>
-          {activeStep === steps.length ? <Confirmation /> : <Form />}
+          {activeStep === steps.length ? <Confirmation /> : checkoutToken&&<Form />}
         </Paper>
       </main>
     </>
