@@ -5,12 +5,12 @@ import {
   Step,
   StepLabel,
   Typography,
-  CircularProgress,
-  Divider,
-  Button,
+  // CircularProgress,
+  // Divider,
+  // Button,
 } from "@material-ui/core";
 import useStyles from "./Styles";
-import { Payment } from "@material-ui/icons";
+// import { Payment } from "@material-ui/icons";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 import { commerce } from "../../../lib/commerse";
@@ -19,7 +19,7 @@ const steps = ["Shipping address", "Payment details"];
 
 function Checkout({ cart }) {
   const classes = useStyles();
-  const [activeStep, setSteActiveStep] = useState(0);
+  const [activeStep, setSteActiveStep] = useState(1);
   const [checkoutToken, setCheckoutToken ] = useState(null)
   useEffect(() => {
     const generateToken = async () => {
