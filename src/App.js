@@ -2,7 +2,7 @@ import * as React from "react";
 // import Products from "./components/Products/Products";
 // import Navbar from "./components/Navbar/Navbar";
 import { commerce } from "./lib/commerse";
-import { Products, Navbar, Cart, Checkout} from "./components";
+import { Products, Navbar, Cart, Checkout } from "./components";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -57,9 +57,9 @@ export default function App() {
               emptyCart={emptyCart}
             />
           </Route>
-            <Route exact path='/checkout'>
-                <Checkout/>
-            </Route>
+          <Route exact path="/checkout">
+            <Checkout cart={cart} />
+          </Route>
         </Switch>
       </div>
     </Router>
